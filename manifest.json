@@ -1,0 +1,24 @@
+{
+  "name": "Tasks Available",
+  "description": "Check whether there are tasks available on Rater Hub via push notification",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "main.html",
+    "default_icon": "icon.png"
+  },
+  "host_permissions": ["*://*.raterhub.com/*"],
+  "permissions": ["tabs", "notifications", "storage"],
+  "background": {
+    "service_worker": "notify.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.raterhub.com/evaluation/rater/",
+        "*://*.raterhub.com/evaluation/rater/task/index"
+      ],
+      "js": ["checktasks.js"]
+    }
+  ]
+}
